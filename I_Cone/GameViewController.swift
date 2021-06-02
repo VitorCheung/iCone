@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class GameViewController: UIViewController {
 
     var simbolos: [String] = ["airplane.circle", "film", "book.circle", "checkmark.circle", "camera.circle", "cloud", "earpods", "gear", "link.circle", "text.alignleft", "volume.slash", "highlighter", "pencil", "doc", "bookmark", "text.book.closed", "folder", "command", "restart", "sleep", "wake", "network", "timelapse", "eject", "memories", "target", "location", "bell", "mappin", "return", "trash", "paperplane", "note", "square.and.pencil", "tray", "flag", "magnifyingglass", "plus.magnifyingglass", "scribble"]
@@ -37,8 +38,6 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         feedback.textColor = .black
-        pontos.textColor = .black
-        nome.textColor = .black
         botoes = [primeiraAlt, segundaAlt, terceiraAlt, quartaAlt]
         mudarQuestao.isHidden = true
         goPontos.isHidden = true
@@ -51,7 +50,6 @@ class GameViewController: UIViewController {
             permitidoMudar = true
             if sender.tag == 1 {
                 pontuacao += 1
-                pontos.text = "Pontuacao: \(pontuacao)"
                 feedback.text = "✅ Resposta Correta"
             } else {
                 feedback.text = "❌ Resposta errada\nAlternativa correta: \(resposta)"
@@ -83,7 +81,7 @@ class GameViewController: UIViewController {
             posicaoResposta = Int.random(in: 0..<simbolos.count)
             resposta = respostas[posicaoResposta]
             imagem.image = UIImage(systemName: simbolos[posicaoResposta])
-            nome.text = respostas[posicaoResposta]
+
             botoes = botoes.shuffled()
             for s in 0..<botoes.count {
                 if s == 0 {
@@ -104,5 +102,29 @@ class GameViewController: UIViewController {
         }
     }
     
+//    @IBAction func ProximaView(_ sender: Any) {
+//        let pontuacaoViewController = PontuacaoViewController()
+////        pontuacaoViewController.labelPont.text = "\(pontuacao)"
+////        navigationController?.pushViewController(pontuacaoViewController, animated: true)
+//
+//    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "transicaoGamePont" {
+            let pontuacaoViewController = segue.destination as? PontuacaoViewController
+            pontuacaoViewController?.pontuacao=pontuacao
+        }
+        contador = 0
+        pontuacao = 0
+        posicaoResposta = 0
+        permitidoMudar = false
+        permitidoResponder = true
+        resposta = ""
+        feedback.text = ""
+        mudarQuestao.isHidden = true
+        goPontos.isHidden = true
+        updateQuestion()
+        
+    }
     
 }
