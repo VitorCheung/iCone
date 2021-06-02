@@ -9,17 +9,28 @@ import UIKit
 
 class MenuViewController: UIViewController {
 
-    @IBOutlet weak var butaoJogar: UIButton!
+
+//    @IBOutlet weak var butaoJogar: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        butaoJogar.addTarget(self, action: #selector(EventClick), for: .touchUpInside)
+//        butaoJogar.addTarget(self, action: #selector(EventClickNavegation), for: .touchUpInside)
     }
+//    @IBAction func Navegation(_ sender: Any) {
+//    let story = UIStoryboard(name: "Main", bundle: nil)
+//    let controller = story.instantiateViewController(identifier: "GameViewController") as! GameViewController
+//    self.present(controller, animated: true, completion: nil)
+//
+//    }
     
-    @objc func EventClick() {
-        let story = UIStoryboard(name: "Main", bundle: nil)
-        let controller = story.instantiateViewController(identifier: "GameViewController") as! GameViewController
-        self.present(controller, animated: true, completion: nil)
-    }
+//    @objc func EventClickNavegation() {
+//        let story = UIStoryboard(name: "Main", bundle: nil)
+//        let controller = story.instantiateViewController(identifier: "GameViewController") as! GameViewController
+//        let navegation = UINavigationController(rootViewController: controller)
+//        self.view.addSubview(navegation.view)
+//        self.addChild(navegation)
+//        navegation.didMove(toParent: self)
+////        self.present(controller, animated: true, completion: nil)
+//    }
     
 }
 
